@@ -20,7 +20,7 @@ class PluginIcons:
         # Folder icon
         QgsApplication.initQgis()
         style = QgsApplication.style()
-        self.folder_icon = style.standardIcon(QStyle.SP_DirClosedIcon)
+        self.folder_icon = style.standardIcon(QStyle.StandardPixmap.SP_DirClosedIcon)
 
         warn_icon_path = os.path.join(
             PluginGlobals.instance().images_dir_path,

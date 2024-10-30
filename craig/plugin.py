@@ -67,7 +67,7 @@ class SimpleAccessPlugin:
         # Create a dockable panel with a tree of resources
         self.dock = DockWidget()
         self.dock.set_tree_content(self.ressources_tree)
-        self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dock)
+        self.iface.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock)
 
     def createPluginMenu(self):
         """
@@ -103,14 +103,14 @@ class SimpleAccessPlugin:
         Shows the About box
         """
         dialog = AboutBox(self.iface.mainWindow())
-        dialog.exec_()
+        dialog.exec()
 
     def paramMenuTriggered(self):
         """
         Shows the Param box
         """
         dialog = ParamBox(self.iface.mainWindow(), self.dock)
-        dialog.exec_()
+        dialog.exec()
 
     def unload(self):
         """

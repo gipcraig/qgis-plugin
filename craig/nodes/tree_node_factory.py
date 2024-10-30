@@ -41,7 +41,7 @@ def download_tree_config_file(file_url):
                 request, forceRefresh=True
             )
 
-            if response.error() != QNetworkReply.NoError:
+            if response.error() != QNetworkReply.NetworkError.NoError:
                 raise Exception(f"{response.error()} - {response.errorString()}")
 
             data_raw_string = bytes(response.content()).decode("utf-8")

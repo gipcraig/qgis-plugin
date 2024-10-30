@@ -39,7 +39,7 @@ class TreeWidget(QTreeWidget):
         super(TreeWidget, self).__init__()
 
         # Selection
-        self.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
 
         # Columns and headers
         self.setColumnCount(1)
@@ -50,7 +50,7 @@ class TreeWidget(QTreeWidget):
         self.itemDoubleClicked.connect(self.tree_item_double_clicked)
 
         # Context menu
-        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.customContextMenuRequested.connect(self.open_menu)
 
         # Enable drag of tree items
@@ -369,7 +369,7 @@ class TreeWidget(QTreeWidget):
         hide_empty_groups = PluginGlobals.instance().HIDE_EMPTY_GROUPS
 
         # iterator for hidden items only
-        it = QTreeWidgetItemIterator(self, QTreeWidgetItemIterator.Hidden)
+        it = QTreeWidgetItemIterator(self, QTreeWidgetItemIterator.IteratorFlag.Hidden)
         # for each item
         while it.value():
             item = it.value()
@@ -427,7 +427,7 @@ class TreeWidget(QTreeWidget):
         """
         selected_item = self.currentItem()
         menu = selected_item.create_menu()
-        menu.exec_(self.viewport().mapToGlobal(position))
+        menu.exec(self.viewport().mapToGlobal(position))
 
     # Constant and methods used for drag and drop of tree items onto the map
 
@@ -441,7 +441,7 @@ class TreeWidget(QTreeWidget):
         """ """
         mime_data = QTreeWidget.mimeData(self, items)
         encoded_data = QByteArray()
-        stream = QDataStream(encoded_data, QIODevice.WriteOnly)
+        stream = QDataStream(encoded_data, QIODevice.OpenModeFlag.WriteOnly)
 
         for item in items:
             layer_mime_data = item.item_data.layer_mime_data()

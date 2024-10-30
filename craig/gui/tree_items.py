@@ -66,9 +66,9 @@ class TreeWidgetItem(QTreeWidgetItem):
         # QT flags
         # Enable selection and drag of the item
         if self.item_data.can_be_added_to_map:
-            self.setFlags(Qt.ItemIsDragEnabled | Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+            self.setFlags(Qt.ItemFlag.ItemIsDragEnabled | Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
         else:
-            self.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+            self.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
 
     def run_default_action(self):
         """ """

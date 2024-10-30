@@ -37,7 +37,7 @@ class ParamBox(QDialog):
         """ """
         dlg_layout = QVBoxLayout()
         params_layout = QVBoxLayout()
-        params_layout.setAlignment(Qt.AlignTop)
+        params_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         # Config files groupbox
         self.config_files_groupbox = QgsCollapsibleGroupBox(
@@ -65,9 +65,9 @@ class ParamBox(QDialog):
         # Download the file now
         self.download_now_label = QLabel(u"Télécharger le fichier maintenant", self)
         self.download_now_btnbox = QDialogButtonBox()
-        self.download_now_btnbox.setOrientation(Qt.Horizontal)
-        self.download_now_btnbox.setStandardButtons(QDialogButtonBox.Yes)
-        self.download_now_btnbox.button(QDialogButtonBox.Yes).clicked.connect(
+        self.download_now_btnbox.setOrientation(Qt.Orientation.Horizontal)
+        self.download_now_btnbox.setStandardButtons(QDialogButtonBox.StandardButton.Yes)
+        self.download_now_btnbox.button(QDialogButtonBox.StandardButton.Yes).clicked.connect(
             self.download_file_now
         )
         config_file_groupbox_layout.addRow(
@@ -106,19 +106,19 @@ class ParamBox(QDialog):
 
         # Bottom dialog buttons
         self.button_box = QDialogButtonBox()
-        self.button_box.setOrientation(Qt.Horizontal)
+        self.button_box.setOrientation(Qt.Orientation.Horizontal)
         self.button_box.setStandardButtons(
-            QDialogButtonBox.RestoreDefaults
-            | QDialogButtonBox.Apply
-            | QDialogButtonBox.Close
+            QDialogButtonBox.StandardButton.RestoreDefaults
+            | QDialogButtonBox.StandardButton.Apply
+            | QDialogButtonBox.StandardButton.Close
         )
-        self.button_box.button(QDialogButtonBox.RestoreDefaults).clicked.connect(
+        self.button_box.button(QDialogButtonBox.StandardButton.RestoreDefaults).clicked.connect(
             self.restore_defaults_button_clicked
         )
-        self.button_box.button(QDialogButtonBox.Close).clicked.connect(
+        self.button_box.button(QDialogButtonBox.StandardButton.Close).clicked.connect(
             self.close_button_clicked
         )
-        self.button_box.button(QDialogButtonBox.Apply).clicked.connect(
+        self.button_box.button(QDialogButtonBox.StandardButton.Apply).clicked.connect(
             self.apply_button_clicked
         )
 
@@ -197,7 +197,7 @@ class ParamBox(QDialog):
         )
 
         # Update state of the Apply Button
-        self.button_box.button(QDialogButtonBox.Apply).setEnabled(self.need_save)
+        self.button_box.button(QDialogButtonBox.StandardButton.Apply).setEnabled(self.need_save)
 
     def download_cb_changed(self, state):
         """
@@ -323,14 +323,14 @@ class ParamBox(QDialog):
                 self,
                 u"Sauvegarder ?",
                 u"Voulez-vous appliquer les changements avant de fermer la fenêtre de paramétrage de l'extension ?",
-                QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
-                QMessageBox.Yes,
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No | QMessageBox.StandardButton.Cancel,
+                QMessageBox.StandardButton.Yes,
             )
 
-            if reply == QMessageBox.No:
+            if reply == QMessageBox.StandardButton.No:
                 evnt.accept()
                 super(ParamBox, self).closeEvent(evnt)
-            elif reply == QMessageBox.Yes:
+            elif reply == QMessageBox.StandardButton.Yes:
                 self.save_settings()
                 evnt.accept()
                 super(ParamBox, self).closeEvent(evnt)

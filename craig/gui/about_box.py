@@ -45,7 +45,7 @@ class AboutBox(QDialog):
         self.textArea.setHtml(description1)
         self.textArea.append(description2)
         self.textArea.append(description3)
-        self.textArea.setFrameShape(QFrame.NoFrame)
+        self.textArea.setFrameShape(QFrame.Shape.NoFrame)
         mainLayout.addWidget(self.textArea)
 
         self.setModal(True)
