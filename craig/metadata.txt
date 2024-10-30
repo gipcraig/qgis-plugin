@@ -9,6 +9,7 @@ email=geomatique@craig.fr
 icon=images/craig_logo.png
 experimental=False
 deprecated=False
+supportsQt6=yes
 about=Plugin for QGIS 3 providing simple access to WMS/WMTS and WFS geographic resources provided by CRAIG and other useful geographic resources in the Auvergne Rhône-Alpes region.
 tracker=https://github.com/gipcraig/qgis-plugin/issues
 repository=https://github.com/gipcraig/qgis-plugin
