@@ -32,20 +32,20 @@ def download_tree_config_file(file_url):
     Download the resources tree file
     """
     try:
+        request = QNetworkRequest(QUrl(file_url))
+        manager = QgsNetworkAccessManager.instance()
+        response: QgsNetworkReplyContent = manager.blockingGet(
+            request, forceRefresh=True
+        )
+
+        if response.error() != QNetworkReply.NetworkError.NoError:
+            raise Exception(f"{response.error()} - {response.errorString()}")
+
+        data_raw_string = bytes(response.content()).decode("utf-8")
+        data = json.loads(data_raw_string)
+
         # replace content of local config file by content of online config file
         with open(PluginGlobals.instance().config_file_path, "w") as local_config_file:
-
-            request = QNetworkRequest(QUrl(file_url))
-            manager = QgsNetworkAccessManager.instance()
-            response: QgsNetworkReplyContent = manager.blockingGet(
-                request, forceRefresh=True
-            )
-
-            if response.error() != QNetworkReply.NetworkError.NoError:
-                raise Exception(f"{response.error()} - {response.errorString()}")
-
-            data_raw_string = bytes(response.content()).decode("utf-8")
-            data = json.loads(data_raw_string)
 
             json.dump(data, local_config_file, ensure_ascii=False, indent=2)
 
