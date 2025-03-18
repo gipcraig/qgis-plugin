@@ -1,7 +1,7 @@
 [general]
 name=CRAIG
 description=Plugin pour QGIS 3 fournissant un accès simple aux flux de données géographiques WMS/WMTS et WFS du CRAIG et d'autres ressources géographiques utiles en région Auvergne Rhône-Alpes.
-version=0.3
+version=0.4
 qgisMinimumVersion=3.00
 qgisMaximumVersion=3.99
 author=CRAIG, Région Hauts-de-France, Neogeo Technologies, Benjamin Chartier, UMR LETG
